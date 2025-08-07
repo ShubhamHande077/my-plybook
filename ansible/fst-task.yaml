@@ -1,13 +1,17 @@
 - name: my first playbook
-  host: servers
-  vars:                                 #global variable
-   movie: "spider"
+  hosts: servers
+  vars:
+    movie: "spider"
   tasks:
-- name: fst tasks
-  debug:
-    msg: "Hello this is {{movie}}"
-- name: 2nd tasks
-  debug:
-    msg: "hello this is {{movie}}" #local variable
-    vars:
+    - name: first task
+      debug:
+        msg: "Hello this is {{ movie }}"
+
+- name: second tasks
+  hosts: servers                
+  vars:
     movie: "Ironman"
+  tasks:
+    - name: second task
+      debug:
+        msg: "hello this is {{ movie }}"
