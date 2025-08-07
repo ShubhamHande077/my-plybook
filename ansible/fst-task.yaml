@@ -7,10 +7,10 @@
       debug:
         msg: "Hello this is {{ movie }}"
 
-- name: second tasks
-  hosts: servers                
-  vars:
-    movie: "Ironman"
+# - name: second tasks
+#   hosts: servers                
+#   vars:
+#     movie: "Ironman"
   tasks:
     - name: second task
       debug:
