@@ -1,0 +1,12 @@
+key : value
+name : shubham
+list : ["abc123","abc23"]
+list :  
+  - "abc123"
+  - "abc23"
+
+map:
+  -address:
+    city:pune
+    pin:323
+  -address2:
