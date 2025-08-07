@@ -6,7 +6,6 @@
     - name: first task
       debug:
         msg: "Hello this is {{ movie }}"
-  tasks:
     - name: second task
       debug:
         msg: "hello this is {{ movie }}"
