@@ -1,0 +1,90 @@
+ansible 2vid
+	create 1 ec2 instnce and insall ansible
+	create 1 more host instance- ubunut
+	
+	first instance
+	  - ls /etc/ansible  // check home dir
+	  - cat /etc/ansible/hosts
+	  - sudo nano /etc/ansible/hosts
+		#ex 1.ungrouped hosts
+		172.31.89.223 //host private ip copy from
+      
+	  //-cd /etc/ansible/
+	 //gitbash - scp -i id_rsa id_rsa ubuntu@ansible-server-ip.add:/home/ubuntu/id_rsa //copy forwardkey
+	   - cd ~ //check here is copy key
+	   -sudo cp id_rsa.pem /etc/ansible/      
+    	  
+	  -cd /etc/ansible
+	  -ansible -i hosts all -u ubuntu --private-key=./id_rsa -m shell -a hostname
+	 -sudo nano ansible.cfg
+	 -sudo ansible-config init --disabled > ansible.cfg
+	sudo -i 
+
+	ansible-config init --disable > /etc/ansible/ansible.cfg
+	-cd /etc/ansible
+	-ls
+	-nano ansible.cfg
+		private_key = ./id_rsa
+	 	remote_user=ubuntu
+	-ansile -i hosts all -u ubuntu --private-key=./id_rsa -m shell -a hostname
+	-chmod 400 id_rsa
+	-ansile -i hosts all -u ubuntu --private-key=./id_rsa -m shell -a hostname
+	-ansible -i hosts all -m shell -a hostname
+
+---- ANSIBLE playbook-------
+playbokk write in yaml lang
+
+
+....write a playbook(master_server) and deploy a website your host(local-machine) machine
+-vim deploy_staticpage.yml
+	-
+	name: Install nginx and server static website
+	hosts: server
+	become:yes
+	tasks:
+	 - name: Install nginx
+	   apt:
+		name: nginx
+		state: latest
+	
+	- name: start nginx
+	  service:
+		name: nginx
+		state: started
+		enabled: yes
+	
+	- name: Deploy web page
+	 copy:
+	 	src: index.html
+		dest: /var/www/html
+
+-vim index.html //write a html page
+
+
+--write a global variable
+	
+    - name: my first playbook
+      hosts: servers
+      vars: 
+	movie: "spider"   //global variable
+      //vars_files:
+	 - ./var/txt
+      tasks:	
+	- name: fst tasks
+	  debug
+	    msg: "hello this is {{movie}}"   // {{movie}} call this variable
+        - name: 2nd 
+          debug:
+            msg: "hello this is {{movie}}" #local variable
+           vars:
+              movie: "Ironman"
+
+--var.txt
+	movis: "marval"
+
+// git config pull.rebase false     // pull hot nasel trr
+// git config pull.rebase true
+
+- git rebase --continue //rebase intrective
+	
+	     
