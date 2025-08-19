@@ -2,6 +2,9 @@
   hosts: servers
   vars:
     movie: "shubham"
+  vars_files:
+   - ./var.txt
+  
   tasks:
     - name: first task
       debug:
@@ -9,5 +12,8 @@
     - name: second task
       debug:
         msg: "hello this is {{ movie }}"
+    - name: fourth task
+      debug:
+       msg: "Hello this {{ movie }}"
       vars:
         movie: Ironman
